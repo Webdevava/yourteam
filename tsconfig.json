@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/admin/colleges/route.js", "app/api/admin/courses/route.js", "app/api/admin/users/route.js", "app/api/auth/forgot-password/route.js", "app/api/auth/login/route.js", "app/api/auth/register/route.js", "app/api/auth/reset-password/route.js", "app/api/contact/route.js", "app/api/user/courses/route.js", "app/api/user/enroll/route.js", "app/api/user/enrolled/route.js", "app/api/user/projects/route.js", "lib/auth.js", "lib/email.js", "lib/mongodb.js", "lib/s3.js", "scripts/createAdminUser.js", "app/(auth)/auth/page.tsx", "components/navigation/topbar.jsx"],
+  "exclude": ["node_modules"]
+}
