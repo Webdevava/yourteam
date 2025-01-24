@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -9,8 +10,8 @@ export default function NotFound() {
             404 - Page Not Found
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            It seems you've taken a wrong turn. The page you're looking for
-            doesn't exist or might have been moved. Let's get you back on track!
+            It seems you&apos;ve taken a wrong turn. The page you&apos;re looking for
+            doesn&apos;t exist or might have been moved. Let&apos;s get you back on track!
           </p>
           <Link
             href="/"
@@ -21,7 +22,7 @@ export default function NotFound() {
           </Link>
         </div>
         <div className="flex justify-center">
-          <img
+          <Image
             src="https://i.giphy.com/xRvMWkuZt2ChfdtdUv.webp"
             alt="Lost and Searching"
             className="object-contain max-h-96"

@@ -3,7 +3,7 @@ import clientPromise from "@/lib/mongodb";
 import { verifyToken } from "@/lib/auth";
 import { ObjectId } from "mongodb";
 
-export async function GET(req) {
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db();

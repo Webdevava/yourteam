@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 
 export default function CoursesPage() {
@@ -26,6 +27,8 @@ export default function CoursesPage() {
         const data = await response.json()
         setCourses(data)
       } catch (err) {
+      console.log(err);
+
         setError("Failed to load courses")
       } finally {
         setLoading(false)
@@ -50,6 +53,8 @@ export default function CoursesPage() {
       }
       router.push("/dashboard")
     } catch (err) {
+      console.log(err);
+
       setError("Failed to enroll in course")
     }
   }
@@ -70,7 +75,7 @@ export default function CoursesPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <img
+              <Image
                 src={course.thumbnail || "/placeholder.svg"}
                 alt={course.title}
                 className="w-full h-40 object-cover mb-2"

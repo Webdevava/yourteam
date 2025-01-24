@@ -9,6 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BarChart2, Clock } from 'lucide-react';
+import Image from 'next/image';
 
 
 
@@ -94,7 +95,7 @@ const Courses = () => {
             className="bg-card rounded-3xl hover:rounded-[2.5rem] shadow-inner overflow-hidden hover:shadow-[5px_5px_0px_0px_rgba(202,251,127)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300"
           >
             <div className="relative">
-              <img
+              <Image
                 src={course.image}
                 alt={course.title}
                 className="w-full h-64 object-cover"

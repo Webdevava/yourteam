@@ -40,6 +40,8 @@ export default function CollegeManagement() {
       const data = await response.json();
       setColleges(data);
     } catch (error) {
+      console.log(error);
+
       toast.error("Failed to fetch colleges");
     }
   };
@@ -65,6 +67,8 @@ export default function CollegeManagement() {
         toast.error(errorData.error || "Failed to add college");
       }
     } catch (error) {
+      console.log(error);
+
       toast.error("Failed to add college");
     }
   };
@@ -90,6 +94,8 @@ export default function CollegeManagement() {
         toast.error(errorData.error || "Failed to delete college");
       }
     } catch (error) {
+      console.log(error);
+
       toast.error("Failed to delete college");
     }
   };

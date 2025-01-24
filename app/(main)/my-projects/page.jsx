@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 
 export default function ProjectsPage() {
@@ -26,6 +27,8 @@ export default function ProjectsPage() {
         const data = await response.json()
         setProjects(data)
       } catch (err) {
+      console.log(err);
+
         setError("Failed to load projects")
       } finally {
         setLoading(false)
@@ -50,6 +53,8 @@ export default function ProjectsPage() {
       }
       router.push("/dashboard")
     } catch (err) {
+      console.log(err);
+
       setError("Failed to enroll in project")
     }
   }
@@ -70,7 +75,7 @@ export default function ProjectsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <img
+              <Image
                 src={project.thumbnail || "/placeholder.svg"}
                 alt={project.title}
                 className="w-full h-40 object-cover mb-2"

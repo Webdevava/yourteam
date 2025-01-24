@@ -7,16 +7,16 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { GitMerge, LogIn, UserPlus, EyeIcon, EyeOffIcon } from "lucide-react";
+import { LogIn, UserPlus, EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login");
@@ -25,7 +25,7 @@ export default function AuthPage() {
   const [showPassword, setShowPassword] = useState({
     login: false,
     register: false,
-    confirmRegister: false
+    confirmRegister: false,
   });
   const router = useRouter();
 
@@ -42,47 +42,51 @@ export default function AuthPage() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const togglePasswordVisibility = (type: 'login' | 'register' | 'confirmRegister') => {
-    setShowPassword(prev => ({
+  const togglePasswordVisibility = (
+    type: "login" | "register" | "confirmRegister"
+  ) => {
+    setShowPassword((prev) => ({
       ...prev,
-      [type]: !prev[type]
+      [type]: !prev[type],
     }));
   };
 
-const handleLogin = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError("");
-  setSuccess("");
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
 
-  try {
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-    });
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      // Save token and user details to localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      if (response.ok) {
+        // Save token and user details to localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Redirect based on admin status
-      if (data.user.isAdmin) {
-        router.push("/admin/dashboard");
+        // Redirect based on admin status
+        if (data.user.isAdmin) {
+          router.push("/admin/dashboard");
+        } else {
+          router.push("/dashboard");
+        }
+
+        setSuccess("Login successful!");
       } else {
-        router.push("/dashboard");
+        setError(data.error || "Login failed. Please try again.");
       }
+    } catch (error) {
+      console.log(error);
 
-      setSuccess("Login successful!");
-    } else {
-      setError(data.error || "Login failed. Please try again.");
+      setError("An error occurred. Please try again.");
     }
-  } catch (error) {
-    setError("An error occurred. Please try again.");
-  }
-};
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,6 +121,8 @@ const handleLogin = async (e: React.FormEvent) => {
         setError(data.error || "Registration failed. Please try again.");
       }
     } catch (error) {
+      console.log(error);
+
       setError("An error occurred. Please try again.");
     }
   };
@@ -127,12 +133,14 @@ const handleLogin = async (e: React.FormEvent) => {
         <div className="grid md:grid-cols-2">
           {/* Left side - Branding & Illustration */}
           <div className="hidden flex-1 md:flex flex-col justify-center items-center bg-primary/5 p-8 rounded-l-[2.5rem]">
-            <img 
-              src="/assets/yourteam.svg" 
-              alt="YourTeam Logo" 
+            <Image
+              src="/assets/yourteam.svg"
+              alt="YourTeam Logo"
               className="h-24 mb-6"
             />
-            <h1 className="text-3xl font-bold text-primary mb-4">YourTeam.in</h1>
+            <h1 className="text-3xl font-bold text-primary mb-4">
+              YourTeam.in
+            </h1>
             <p className="text-center text-muted-foreground">
               Connect, Collaborate, and Grow Together
             </p>
@@ -142,19 +150,21 @@ const handleLogin = async (e: React.FormEvent) => {
           <div className="flex-1 p-6 md:p-8">
             <CardHeader className="space-y-1 text-center">
               <div className="flex justify-center items-center gap-2 mb-4 md:hidden">
-                <img 
-                  src="/assets/yourteam.svg" 
-                  alt="YourTeam Logo" 
+                <Image
+                  src="/assets/yourteam.svg"
+                  alt="YourTeam Logo"
                   className="h-12"
                 />
-                <CardTitle className="text-2xl font-bold">YourTeam.in</CardTitle>
+                <CardTitle className="text-2xl font-bold">
+                  YourTeam.in
+                </CardTitle>
               </div>
               <CardTitle className="text-2xl mb-2">
                 {activeTab === "login" ? "Welcome Back" : "Create Account"}
               </CardTitle>
               <CardDescription>
-                {activeTab === "login" 
-                  ? "Enter your credentials to access your account" 
+                {activeTab === "login"
+                  ? "Enter your credentials to access your account"
                   : "Fill in your details to get started"}
               </CardDescription>
             </CardHeader>
@@ -171,9 +181,9 @@ const handleLogin = async (e: React.FormEvent) => {
                 </div>
               )}
 
-              <Tabs 
-                value={activeTab} 
-                onValueChange={setActiveTab} 
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
                 className="w-full"
               >
                 <TabsList className="grid w-full grid-cols-2 mb-6">
@@ -209,7 +219,7 @@ const handleLogin = async (e: React.FormEvent) => {
                       />
                       <button
                         type="button"
-                        onClick={() => togglePasswordVisibility('login')}
+                        onClick={() => togglePasswordVisibility("login")}
                         className="absolute right-3 top-9 text-muted-foreground"
                       >
                         {showPassword.login ? (
@@ -298,7 +308,7 @@ const handleLogin = async (e: React.FormEvent) => {
                         />
                         <button
                           type="button"
-                          onClick={() => togglePasswordVisibility('register')}
+                          onClick={() => togglePasswordVisibility("register")}
                           className="absolute right-3 top-9 text-muted-foreground"
                         >
                           {showPassword.register ? (
@@ -309,17 +319,23 @@ const handleLogin = async (e: React.FormEvent) => {
                         </button>
                       </div>
                       <div className="space-y-2 relative">
-                        <Label htmlFor="confirmPassword">Confirm Password</Label>
+                        <Label htmlFor="confirmPassword">
+                          Confirm Password
+                        </Label>
                         <Input
                           id="confirmPassword"
-                          type={showPassword.confirmRegister ? "text" : "password"}
+                          type={
+                            showPassword.confirmRegister ? "text" : "password"
+                          }
                           required
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <button
                           type="button"
-                          onClick={() => togglePasswordVisibility('confirmRegister')}
+                          onClick={() =>
+                            togglePasswordVisibility("confirmRegister")
+                          }
                           className="absolute right-3 top-9 text-muted-foreground"
                         >
                           {showPassword.confirmRegister ? (
@@ -347,8 +363,8 @@ const handleLogin = async (e: React.FormEvent) => {
                 </div>
               </div>
 
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="w-full"
                 onClick={() => alert("Google login not implemented yet")}
               >

@@ -1,5 +1,6 @@
 import React from "react";
-import { Rocket, BookOpen, TrendingUp, Code, Users, Award } from "lucide-react";
+import { TrendingUp, Code, Users, Award } from "lucide-react";
+import Image from "next/image";
 
 const BentoFeatures = () => {
   return (
@@ -30,7 +31,7 @@ const BentoFeatures = () => {
                 insights and personalized recommendations.
               </p>
             </div>
-            <img
+            <Image
               src="/assets/dash.jpg"
               alt="Dashboard Preview"
               className="w-full h-48 object-cover object-center rounded-2xl mt-4 bg-bottom"

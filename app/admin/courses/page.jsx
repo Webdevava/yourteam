@@ -123,7 +123,7 @@ export default function CourseManagement() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         fetchCourses();
         setNewCourse({
           title: "",

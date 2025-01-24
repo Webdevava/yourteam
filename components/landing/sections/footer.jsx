@@ -1,6 +1,7 @@
 import React from "react";
 import { Github, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -9,7 +10,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img
+              <Image
+                alt="logo"
                 src="/assets/yourteam.svg"
                 className="h-10 transition-transform duration-300 hover:rotate-6"
               />

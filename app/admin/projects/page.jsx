@@ -123,7 +123,7 @@ export default function ProjectManagement() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         fetchProjects();
         setNewProject({
           title: "",

@@ -2,6 +2,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -23,7 +24,7 @@ const Navbar = () => {
     <header className="container mx-auto py-8 flex justify-between items-center px-12">
       <nav className="flex items-center space-x-8">
         <div className="mr-4">
-          <img
+          <Image
             src="/assets/yourteam.svg"
             className="h-14 cursor-pointer"
             onClick={() => navigateTo("/")}

@@ -49,6 +49,8 @@ export default function ContactsPage() {
       setContacts(data);
       setIsLoading(false);
     } catch (error) {
+      console.log(error);
+
       toast.error('Failed to load contacts');
       setIsLoading(false);
     }
@@ -71,6 +73,8 @@ export default function ContactsPage() {
       toast.success('Contact deleted successfully');
       fetchContacts();
     } catch (error) {
+      console.log(error);
+
       toast.error('Failed to delete contact');
     }
   };

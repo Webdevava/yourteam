@@ -69,6 +69,7 @@ export async function POST(req) {
         colleges = [];
       }
     } catch (e) {
+      console.log(e)
       return NextResponse.json(
         { error: "Invalid colleges data" },
         { status: 400 }

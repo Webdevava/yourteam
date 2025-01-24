@@ -60,6 +60,7 @@ const Hero = () => {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error",
         description:
